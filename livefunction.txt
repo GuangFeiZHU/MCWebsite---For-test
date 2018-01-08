@@ -1,7 +1,0 @@
-开发live function
-这里有个bug
-
-开发live function
-开发了一半
-git stash 将开放到一部分的文件进行保存，修复其他文件后
-再git stash pop   --拿回工作区
