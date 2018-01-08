@@ -1,0 +1,86 @@
+
+{% extends 'nav-page.html' %}
+
+{% block title %}
+    我的周报
+{% endblock %}
+
+{% block content %}
+
+
+     <div class="container">
+        <div class="page-header">
+            <h1 style="margin-top: -30px">我的周报
+                <small>Manufacturing Center</small>
+            </h1>
+        </div>
+
+    </div>
+
+    {% for weekly_report in my_weekly_report_list %}
+
+
+           <div class="container" style="margin-top: 30px;border: solid 1px silver">
+        <div class="page-header">
+            <h3 style="margin-top: -20px;text-align: center;background-color: #c1e2b3;height: 50px;line-height: 50px">{{ weekly_report.main_response.username }}的周报
+                <small>{{ weekly_report.create_time }} 更新</small>
+            </h3>
+        </div>
+<div class="weekly_content">
+                    {{ weekly_report.weekly_content|safe }}
+                </div>
+               <div style="margin-left: 1040px">
+                       <a href="/edit_weekly_report/{{ subtitle }}/{{ weekly_report.wid }}" class="glyphicon glyphicon-pencil">编辑</a>
+                        <a href="/delete_weekly_report/{{ subtitle }}/{{ weekly_report.wid }}" class="glyphicon glyphicon-trash">删除</a>
+               </div>
+
+    </div>
+            {% endfor %}
+
+{% endblock %}
+
+{% block styles %}
+    <style>
+    .weekly_content img{
+        width:1024px ;
+        height: 576px;
+        margin-top: 15px;
+        margin-left: 50px;
+        margin-bottom: 10px;
+    }
+    </style>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的周报</title>
+    <style>
+        .show_img img{
+            width: 853.3px;
+            height: 480px;
+        }
+    </style>
+</head>
+<body>
+{% for my_weekly_report in my_weekly_report_list %}
+    <div>{{ my_weekly_report.main_response.username |safe}}</div>
+    <div class="show_img">{{ my_weekly_report.weekly_content |safe }}</div>
+    <a href="/edit_weekly_report/{{ subtitle }}/{{ my_weekly_report.wid }}" >编辑||</a>
+    <a href="/delete_weekly_report/{{ subtitle }}/{{ my_weekly_report.wid }}" class="button">删除</a>
+
+{% endfor %}
+</body>
+</html>

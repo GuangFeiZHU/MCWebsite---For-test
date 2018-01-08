@@ -1,0 +1,118 @@
+{% extends 'nav-page.html' %}
+
+{% block title %}
+    周报查询
+{% endblock %}
+
+{% block content %}
+
+
+     <div class="container">
+        <div class="page-header">
+            <h1 style="margin-top: -30px">周报查询
+                <small>Manufacturing Center</small>
+            </h1>
+        </div>
+    </div>
+
+<form method="post">
+<div class="container">
+{% csrf_token %}
+
+  <div class="form-group col-md-2">
+    <label for="exampleInputEmail1">负责人</label>
+{#    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="主负责人" name="main_response">#}
+      <select name="main_response__username" id="" class="form-control">
+          <option value="">负责人</option>
+          {% for user_obj in main_info.user_list %}
+              <option>{{ user_obj.username }}</option>
+          {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">内容关键字</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字" name="weekly_content__contains">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="exampleInputPassword1">开始时间</label>
+     <div class="input-group date form_datetime" id="sform" style="margin-right: 30px">
+　　<input class="form-control data-form-start"  type="text" placeholder="开始时间" name="create_time__gte" id="start_time" readonly="true" value="" style="margin-top: -35px" />
+   <span class="input-group-addon" style="display: inline-block;position: relative;left: 190px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar"></span></span>
+</div>
+  </div>
+  <div class="form-group col-md-3">
+    <label for="exampleInputPassword1">结束时间</label>
+<div class="input-group date form_datetime" id="eform" style="margin-left: 20px">
+ 　　<input class="form-control data-form-start" type="text" placeholder="结束时间" name="create_time__lte" id="end_time" readonly="true" value="" style="margin-top: -35px;margin-left: -20px" />
+ 　　<span class="input-group-addon" style="display: inline-block;position: relative;left: 150px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar" ></span></span>
+</div>
+  </div>
+  <button type="submit" class="btn btn-default" style="margin-top: 12px;margin-left: 90px;margin-bottom: 15px">搜索</button>
+  </div>
+</form>
+
+    {% for weekly_report in weekly_report_list %}
+
+
+           <div class="container" style="margin-top: 30px;border: solid 1px silver">
+        <div class="page-header">
+            <h3 style="margin-top: -20px;text-align: center;background-color: #c1e2b3;height: 50px;line-height: 50px">{{ weekly_report.main_response.username }}的周报
+                <small>{{ weekly_report.create_time }} 更新</small>
+            </h3>
+        </div>
+<div class="weekly_content">
+                    {{ weekly_report.weekly_content|safe }}
+                </div>
+    </div>
+            {% endfor %}
+
+    {#分页 页脚#}
+  <nav aria-label="Page navigation" style="margin-left: 640px">
+  <ul class="pagination">
+  {{ tags|safe }}
+  </ul>
+</nav>
+
+{% endblock %}
+
+{% block styles %}
+    <style>
+    .weekly_content img{
+        width:1024px ;
+        height: 576px;
+        margin-top: 15px;
+        margin-left: 50px;
+        margin-bottom: 10px;
+    }
+    </style>
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+    $("#sform").datetimepicker({
+            format:'yyyy/mm/dd',
+            language:'zh-CN',
+            minView: "month",
+            todayBtn:  1,
+            autoclose: 1
+        }).on('show', function (ev) {//在控件显示时就触发事件
+            var etime = $("#end_time").val();//获取结束时间
+            $("#sform").datetimepicker('setEndDate', etime);//给开始控件设置一个结束的日期。
+        });
+        $("#eform").datetimepicker({
+            format:'yyyy/mm/dd',
+            language:'zh-CN',
+            minView: "month",
+            todayBtn:  1,
+            autoclose: 1
+        }).on('show', function (ev) {
+            var stime = $("#start_time").val();
+            $("#eform").datetimepicker('setStartDate', stime);//给结束控件设置一个开始日期
+        });
+    </script>
+{% endblock %}

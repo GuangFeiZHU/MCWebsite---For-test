@@ -1,0 +1,149 @@
+{% extends 'nav-page.html' %}
+{% block title %}
+    搜索主页
+{% endblock %}
+
+{% block header %}
+<link href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/static/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="page-header">
+            <h1 style="margin-top: -30px">搜索工作事项
+                <small>Manufacturing Center</small>
+            </h1>
+        </div>
+    </div>
+
+<form method="post">
+<div class="container">
+{% csrf_token %}
+
+  <div class="form-group col-md-2">
+    <label for="exampleInputEmail1">主负责人</label>
+{#    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="主负责人" name="main_response">#}
+      <select name="main_response__username" id="" class="form-control">
+          <option value="">主负责人</option>
+          {% for user_obj in main_info.user_list %}
+              <option>{{ user_obj.username }}</option>
+          {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">次负责人</label>
+{#    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="次负责人" name="sub_response">#}
+       <select name="works__sub_response__username" id="" class="form-control">
+          <option value="">次负责人</option>
+          {% for user_obj in main_info.user_list %}
+              <option>{{ user_obj.username }}</option>
+          {% endfor %}
+      </select>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">内容关键字</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字" name="title__contains">
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">开始时间</label>
+     <div class="input-group date form_datetime" id="sform" style="margin-right: 30px">
+　　<input class="form-control data-form-start"  type="text" placeholder="开始时间" name="create_time__gte" id="start_time" readonly="true" value="" style="margin-top: -35px" />
+   <span class="input-group-addon" style="display: inline-block;position: relative;left: 94px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar"></span></span>
+</div>
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">结束时间</label>
+<div class="input-group date form_datetime" id="eform" style="margin-left: 20px">
+ 　　<input class="form-control data-form-start" type="text" placeholder="结束时间" name="create_time__lte" id="end_time" readonly="true" value="" style="margin-top: -35px;margin-left: -20px" />
+ 　　<span class="input-group-addon" style="display: inline-block;position: relative;left: 54px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar" ></span></span>
+</div>
+
+  </div>
+  <div class="form-group col-md-2">
+    <label for="exampleInputPassword1">是否办结</label>
+    <select name="status" id="" class="form-control">
+          <option value="">办结状态</option>
+        <option value="1">办结</option>
+        <option value="0">未办结</option>
+
+      </select>
+  </div>
+
+  <button type="submit" class="btn btn-default" style="margin-top: 12px;margin-left: 1060px;margin-bottom: 15px">搜索</button>
+  </div>
+</form>
+
+
+
+<div class="container">
+        <div class="col-md-12">
+            {% for work_content in main_info.work_contents %}
+                <div class="well well-lg">
+                    <h3>{{ work_content.work_title }}
+                        <small>{{ work_content.work_main }} <span style="font-size: small">{{ work_content.sub_response }}</span> </small>
+                    </h3>
+                    <blockquote>
+                        {% for work_detail in work_content.work_detail_list %}
+                            <p style="padding-top: 12px">{{ work_detail.work_detail_content }}</p>
+                            <footer><cite title="Source Title">{{ work_detail.work_detail_update_time }} 更新</cite></footer>
+                        {% endfor %}
+
+                    </blockquote>
+                {% if work_content.work_status %}
+                <p style="float: right;color: green">办结</p>
+                    {% else %}
+                    <p style="float: right;color: red;font-size: large">尚未办结</p>
+                {% endif %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-md-4">
+        </div>
+</div>
+
+
+{#分页 页脚#}
+  <nav aria-label="Page navigation" style="margin-left: 640px">
+  <ul class="pagination">
+  {{ tags|safe }}
+  </ul>
+</nav>
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+    <script type="text/javascript" src="/static/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+
+    <script type="text/javascript">
+    $("#sform").datetimepicker({
+            format:'yyyy/mm/dd',
+            language:'zh-CN',
+            minView: "month",
+            todayBtn:  1,
+            autoclose: 1
+        }).on('show', function (ev) {//在控件显示时就触发事件
+            var etime = $("#end_time").val();//获取结束时间
+            $("#sform").datetimepicker('setEndDate', etime);//给开始控件设置一个结束的日期。
+        });
+        $("#eform").datetimepicker({
+            format:'yyyy/mm/dd',
+            language:'zh-CN',
+            minView: "month",
+            todayBtn:  1,
+            autoclose: 1
+        }).on('show', function (ev) {
+            var stime = $("#start_time").val();
+            $("#eform").datetimepicker('setStartDate', stime);//给结束控件设置一个开始日期
+        });
+    </script>
+{% endblock %}

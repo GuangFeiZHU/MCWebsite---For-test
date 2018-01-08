@@ -1,0 +1,71 @@
+{% extends 'nav-page.html' %}
+{% block title %}
+编辑工作
+{% endblock %}
+
+{% block content %}
+<div style="margin-top: 40px;width:800px;margin-left: 200px">
+    <div class="page-header">
+  <h1>添加工作 <small>Manufacturing Center</small></h1>
+</div>
+    <form class="form-horizontal" novalidate method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">工作项目</label>
+            <div class="col-sm-9">
+
+{#                <input type="text" class="form-control" placeholder="Text input">#}
+                {{ work_form_obj.title }}  {{ work_form_obj.errors.title.0 }}
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">进度</label>
+            <div class="col-sm-9">
+
+{#                <textarea class="form-control" rows="3" name="workcontent" placeholder="可不写"></textarea>#}
+                {{ work_form_obj.content }}  {{ work_form_obj.errors.content.0 }}
+
+            </div>
+        </div>
+
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label  col-sm-offset-1">主负责人</label>
+            <div class="col-sm-2">
+{{ work_form_obj.main_response }}  {{ work_form_obj.errors.main_response.0 }}
+
+            </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">次负责人</label>
+              <div class="col-sm-2">
+                  {{ work_form_obj.sub_response }} {{ work_form_obj.errors.sub_response.0 }}
+            </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">是否办结</label>
+               <div class="col-sm-2">
+                   {{ work_form_obj.status }}  {{ work_form_obj.errors.status.0 }}
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-10">
+                <button type="submit" class="btn btn-default">保存</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
+    });
+</script>
+{% endblock %}

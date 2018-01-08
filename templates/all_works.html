@@ -1,0 +1,74 @@
+{% extends 'nav-page.html' %}
+{% block title %}
+    主页
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <div class="page-header">
+            <h1 style="margin-top: -30px">所有的工作事项
+                <small>Manufacturing Center</small>
+            </h1>
+        </div>
+        <div class="col-md-8">
+            {% for work_content in main_info.work_contents %}
+                <div class="well well-lg">
+                    <h3>{{ work_content.work_title }}
+                        <small>{{ work_content.work_main }} <span style="font-size: small">{{ work_content.sub_response }}</span> </small>
+                    </h3>
+                    <blockquote>
+                        {% for work_detail in work_content.work_detail_list %}
+                            <p style="padding-top: 12px">{{ work_detail.work_detail_content }}</p>
+                            <footer><cite title="Source Title">{{ work_detail.work_detail_update_time }} 更新</cite></footer>
+                        {% endfor %}
+
+                    </blockquote>
+                {% if work_content.work_status %}
+                <p style="float: right;color: green">办结</p>
+                    {% else %}
+                    <p style="float: right;color: red;font-size: large">尚未办结</p>
+                {% endif %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Panel content</p>
+                    <p>Panel content</p>
+                    <p>Panel content</p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Panel content</p>
+                    <p>Panel content</p>
+                    <p>Panel content</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+{#分页 页脚#}
+  <nav aria-label="Page navigation" style="margin-left: 440px">
+  <ul class="pagination">
+  {{ tags|safe }}
+  </ul>
+</nav>
+
+
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    {% block header %}
+
+    {% endblock %}
+{% block styles %}
+{% endblock %}
+    {#    <link rel="stylesheet" href="/templates/plugins/bootstrap-3.3.7-dist/css/bootstrap.css">#}
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/commons.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{ main_info.user_department_title }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/mainpage/{{ subtitle }}">今日 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/yesterday/{{ subtitle }}">昨天</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">个人工作 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="mywork_url" href="/my_works/{{ subtitle }}">查看/编辑</a></li>
+                        <li><a href="/search_works/{{ subtitle }}">查询</a></li>
+                        <li><a href="/all_works/{{ subtitle }}">所有的工作</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/add_works/{{ subtitle }}">新增</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+{#                <li><a href="#">Link{{ main_info.user_info.username }}</a></li>#}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">周报 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                          <li><a href="/my_weekly_report/{{ subtitle }}">查看/编辑</a></li>
+                        <li><a href="/all_weekly_report/{{ subtitle }}">周报汇整</a></li>
+                        <li><a href="/add_weekly_report/{{ subtitle }}">添加周报</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/search_weekly_report/{{ subtitle }}">查询</a></li>
+                    </ul>
+                </li>
+                 <li><a>{{ main_info.user_info.username }}</a></li>
+                <li><a href="#"> <img src="/static/upload/{{ main_info.user_info.avatar }}" style="width: 40px;height: 40px;float: right;margin-top: -10px;margin-left: -20px;margin-right: -20px;"> </a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{% block content %}
+
+{% endblock %}
+<div class="page-header">
+</div>
+<div class="container" style="height: 40px;line-height: 30px">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">Copyright © 2017 - 2018 Zhu.GF 版权所有</div></div>
+
+</body>
+<script src="/static/plugins/jquery-3.2.1.js"></script>
+<script src="/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script>
+    $('.collapse').collapse()
+</script>
+{% block js %}
+
+{% endblock %}
+
+
+
+</html>
