@@ -1,45 +1,54 @@
 <form method="post">
-<div class="container">
-{% csrf_token %}
+    <div class="container">
+        {% csrf_token %}
 
-  <div class="form-group col-md-2">
-    <label for="exampleInputEmail1">主负责人</label>
-{#    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="主负责人" name="main_response">#}
-      <select name="main_response__username" id="" class="form-control">
-          <option value="">主负责人</option>
-          {% for user_obj in main_info.user_list %}
-              <option>{{ user_obj.username }}</option>
-          {% endfor %}
-      </select>
-  </div>
-  <div class="form-group col-md-2">
-    <label for="exampleInputPassword1">内容关键字</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字" name="weekly_content__contains">
-  </div>
-  <div class="form-group col-md-2">
-    <label for="exampleInputPassword1">开始时间</label>
-     <div class="input-group date form_datetime" id="sform" style="margin-right: 30px">
-　　<input class="form-control data-form-start"  type="text" placeholder="开始时间" name="create_time__gt" id="start_time" readonly="true" value="" style="margin-top: -35px" />
-   <span class="input-group-addon" style="display: inline-block;position: relative;left: 190px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar"></span></span>
-</div>
-  </div>
-  <div class="form-group col-md-2">
-    <label for="exampleInputPassword1">结束时间</label>
-<div class="input-group date form_datetime" id="eform" style="margin-left: 20px">
- 　　<input class="form-control data-form-start" type="text" placeholder="结束时间" name="create_time__lt" id="end_time" readonly="true" value="" style="margin-top: -35px;margin-left: -20px" />
- 　　<span class="input-group-addon" style="display: inline-block;position: relative;left: 150px;top: -1px;height: 34px; width: 35px;"><span class="glyphicon glyphicon-calendar" ></span></span>
-</div>
-  </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputEmail1">主负责人</label>
+            {#    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="主负责人" name="main_response">#}
+            <select name="main_response__username" id="" class="form-control">
+                <option value="">主负责人</option>
+                {% for user_obj in main_info.user_list %}
+                    <option>{{ user_obj.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputPassword1">内容关键字</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字"
+                   name="weekly_content__contains">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputPassword1">开始时间</label>
+            <div class="input-group date form_datetime" id="sform" style="margin-right: 30px">
+                　　<input class="form-control data-form-start" type="text" placeholder="开始时间" name="create_time__gt"
+                         id="start_time" readonly="true" value="" style="margin-top: -35px"/>
+                <span class="input-group-addon"
+                      style="display: inline-block;position: relative;left: 190px;top: -1px;height: 34px; width: 35px;"><span
+                        class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputPassword1">结束时间</label>
+            <div class="input-group date form_datetime" id="eform" style="margin-left: 20px">
+                　　<input class="form-control data-form-start" type="text" placeholder="结束时间" name="create_time__lt"
+                         id="end_time" readonly="true" value="" style="margin-top: -35px;margin-left: -20px"/>
+                　　<span class="input-group-addon"
+                        style="display: inline-block;position: relative;left: 150px;top: -1px;height: 34px; width: 35px;"><span
+                    class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
 
-  <div class="form-group col-md-2">
-    <label for="exampleInputPassword1">内容关键字</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字" >
-  </div>
-  <div class="form-group col-md-2">
-    <label for="exampleInputPassword1">内容关键字</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字">
-  </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputPassword1">内容关键字</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字">
+        </div>
+        <div class="form-group col-md-2">
+            <label for="exampleInputPassword1">内容关键字</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="内容关键字">
+        </div>
 
-  <button type="submit" class="btn btn-default" style="margin-top: 12px;margin-left: 90px;margin-bottom: 15px">搜索</button>
-  </div>
+        <button type="submit" class="btn btn-default" style="margin-top: 12px;margin-left: 90px;margin-bottom: 15px">
+            搜索
+        </button>
+    </div>
 </form>

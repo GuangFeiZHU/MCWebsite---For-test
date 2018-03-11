@@ -8,8 +8,8 @@
     {% block header %}
 
     {% endblock %}
-{% block styles %}
-{% endblock %}
+    {% block styles %}
+    {% endblock %}
     {#    <link rel="stylesheet" href="/templates/plugins/bootstrap-3.3.7-dist/css/bootstrap.css">#}
     <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/commons.css">
@@ -49,20 +49,22 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-{#                <li><a href="#">Link{{ main_info.user_info.username }}</a></li>#}
+                {#                <li><a href="#">Link{{ main_info.user_info.username }}</a></li>#}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">周报 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                          <li><a href="/my_weekly_report/{{ subtitle }}">查看/编辑</a></li>
+                        <li><a href="/my_weekly_report/{{ subtitle }}">查看/编辑</a></li>
                         <li><a href="/all_weekly_report/{{ subtitle }}">周报汇整</a></li>
                         <li><a href="/add_weekly_report/{{ subtitle }}">添加周报</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/search_weekly_report/{{ subtitle }}">查询</a></li>
                     </ul>
                 </li>
-                 <li><a>{{ main_info.user_info.username }}</a></li>
-                <li><a href="#"> <img src="/static/upload/{{ main_info.user_info.avatar }}" style="width: 40px;height: 40px;float: right;margin-top: -10px;margin-left: -20px;margin-right: -20px;"> </a></li>
+                <li><a>{{ main_info.user_info.username }}</a></li>
+                <li><a href="#"> <img src="/static/upload/{{ main_info.user_info.avatar }}"
+                                      style="width: 40px;height: 40px;float: right;margin-top: -10px;margin-left: -20px;margin-right: -20px;">
+                </a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -75,7 +77,8 @@
 </div>
 <div class="container" style="height: 40px;line-height: 30px">
     <div class="col-md-4"></div>
-    <div class="col-md-8">Copyright © 2017 - 2018 Zhu.GF 版权所有</div></div>
+    <div class="col-md-8">Copyright © 2017 - 2018 Zhu.GF 版权所有</div>
+</div>
 
 </body>
 <script src="/static/plugins/jquery-3.2.1.js"></script>
@@ -86,7 +89,6 @@
 {% block js %}
 
 {% endblock %}
-
 
 
 </html>

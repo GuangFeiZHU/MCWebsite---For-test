@@ -12,8 +12,10 @@
 
 <div style="margin-top: 100px;width: 400px;margin-left: 400px">
     <div class="page-header">
-  <h1>用户注册 <small>Manufacturing Center</small></h1>
-</div>
+        <h1>用户注册
+            <small>Manufacturing Center</small>
+        </h1>
+    </div>
     <form class="form-horizontal" novalidate method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="user_avatar_upload" style="position: absolute">
@@ -76,25 +78,26 @@
                 <label for="inputEmail3" class="col-sm-3 control-label">部门</label>
                 <div class="col-sm-5">
                     {#      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">#}
-                 {{ register_form.department }}  {{ register_form.errors.department.0 }}
+                    {{ register_form.department }} {{ register_form.errors.department.0 }}
                 </div>
             </div>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-3 control-label">职级</label>
-                <div class="col-sm-5">
-                    {#      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">#}
-                  {{ register_form.role }} {{ register_form.errors.role.0 }}
-                </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-3 control-label">职级</label>
+            <div class="col-sm-5">
+                {#      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">#}
+                {{ register_form.role }} {{ register_form.errors.role.0 }}
             </div>
-        <div style="margin-bottom: 5px;margin-left: 100px;font-size: 12px">点击注册表示您同意 <a href="/register_aggrement/">《用户协议》</a> </div>
+        </div>
+        <div style="margin-bottom: 5px;margin-left: 100px;font-size: 12px">点击注册表示您同意 <a href="/register_aggrement/">《用户协议》</a>
+        </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" style="width: 100px;margin-left: 30px">注册</button>
-                </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" style="width: 100px;margin-left: 30px">注册</button>
             </div>
+        </div>
 
     </form>
 
@@ -103,7 +106,7 @@
 
 <div class="container" style="height: 40px;line-height: 30px;position: relative;top: 270px;">
     <div class="col-md-4"></div>
-    <div class="col-md-8" style="color: white">Copyright © 2017 - 2018 Zhu.GF 版权所有  |  <a href="/login/">登录</a>  </div>
+    <div class="col-md-8" style="color: white">Copyright © 2017 - 2018 Zhu.GF 版权所有 | <a href="/login/">登录</a></div>
 </div>
 
 

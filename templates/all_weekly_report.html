@@ -7,7 +7,7 @@
 {% block content %}
 
 
-     <div class="container">
+    <div class="container">
         <div class="page-header">
             <h1 style="margin-top: -30px">本周周报汇整
                 <small>Manufacturing Center</small>
@@ -19,28 +19,28 @@
     {% for weekly_report in weekly_report_list %}
 
 
-           <div class="container" style="margin-top: 30px;border: solid 1px silver">
-        <div class="page-header">
-            <h3 style="margin-top: -20px;text-align: center;background-color: #c1e2b3;height: 50px;line-height: 50px">{{ weekly_report.main_response.username }}的周报
-                <small>{{ weekly_report.create_time }} 更新</small>
-            </h3>
+        <div class="container" style="margin-top: 30px;border: solid 1px silver">
+            <div class="page-header">
+                <h3 style="margin-top: -20px;text-align: center;background-color: #c1e2b3;height: 50px;line-height: 50px">{{ weekly_report.main_response.username }}的周报
+                    <small>{{ weekly_report.create_time }} 更新</small>
+                </h3>
+            </div>
+            <div class="weekly_content">
+                {{ weekly_report.weekly_content|safe }}
+            </div>
         </div>
-<div class="weekly_content">
-                    {{ weekly_report.weekly_content|safe }}
-                </div>
-    </div>
-            {% endfor %}
+    {% endfor %}
 
 {% endblock %}
 
 {% block styles %}
     <style>
-    .weekly_content img{
-        width:1024px ;
-        height: 576px;
-        margin-top: 15px;
-        margin-left: 50px;
-        margin-bottom: 10px;
-    }
+        .weekly_content img {
+            width: 1024px;
+            height: 576px;
+            margin-top: 15px;
+            margin-left: 50px;
+            margin-bottom: 10px;
+        }
     </style>
 {% endblock %}

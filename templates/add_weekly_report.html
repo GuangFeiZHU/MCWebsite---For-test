@@ -1,6 +1,6 @@
 {% extends 'nav-page.html' %}
 {% block title %}
-添加周报
+    添加周报
 {% endblock %}
 
 {% block content %}
@@ -12,32 +12,33 @@
         </div>
     </div>
 
-<form method="post" novalidate style="margin-left: 230px;margin-top: 10px">
-{% csrf_token %}
+    <form method="post" novalidate style="margin-left: 230px;margin-top: 10px">
+        {% csrf_token %}
 
 
-    <span style="font-size: 20px;margin-right: 10px;">添加时间</span> <h4 style="display: inline-block">{{ weekly_obj.create_time }} {{ weekly_obj.errors.create_time.0 }}</h4>
-    <br><br>
-{#    内容撰写 <textarea name="content" id="i1" cols="30" rows="10"></textarea>#}
-    {{ weekly_obj.weekly_content }}   {{ weekly_obj.errors.weekly_content.0 }}
-    <br>
-    <input value="保存" style="background-color: #2aabd2;margin-left: 35%" type="submit" class="btn btn-default">
-</form>
+        <span style="font-size: 20px;margin-right: 10px;">添加时间</span> <h4
+            style="display: inline-block">{{ weekly_obj.create_time }} {{ weekly_obj.errors.create_time.0 }}</h4>
+        <br><br>
+        {#    内容撰写 <textarea name="content" id="i1" cols="30" rows="10"></textarea>#}
+        {{ weekly_obj.weekly_content }} {{ weekly_obj.errors.weekly_content.0 }}
+        <br>
+        <input value="保存" style="background-color: #2aabd2;margin-left: 35%" type="submit" class="btn btn-default">
+    </form>
 {% endblock %}
 
 
 
 {% block js %}
-<script src="/static/plugins/kindeditor-4.1.11-zh-CN/kindeditor/kindeditor-all.js"></script>
-<script>
-    KindEditor.create('#i1',{
-        uploadJson:'/weekly_imgs/{{ subtitle }}/',
-        extraFileUploadParams:{'csrfmiddlewaretoken':'{{ csrf_token }}'},
-        width:'80%',
-        height:'600px'
+    <script src="/static/plugins/kindeditor-4.1.11-zh-CN/kindeditor/kindeditor-all.js"></script>
+    <script>
+        KindEditor.create('#i1', {
+            uploadJson: '/weekly_imgs/{{ subtitle }}/',
+            extraFileUploadParams: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+            width: '80%',
+            height: '600px'
 
-    });
-</script>
+        });
+    </script>
 {% endblock %}
 
 
